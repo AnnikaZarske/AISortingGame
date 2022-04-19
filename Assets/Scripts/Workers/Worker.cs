@@ -44,6 +44,7 @@ public abstract class Worker : MonoBehaviour, IGoap
         worldData.Add(new KeyValuePair<string, object>("hasOres", backpack.numOres > 0 ));
         worldData.Add(new KeyValuePair<string, object>("hasPlanks", backpack.numPlanks > 0 ));
         worldData.Add(new KeyValuePair<string, object>("hasBricks", backpack.numBricks > 0 ));
+        worldData.Add(new KeyValuePair<string, object>("hasFoods", backpack.numFoods > 0 ));
         worldData.Add(new KeyValuePair<string, object>("hasFood", backpack.food != null));
         worldData.Add(new KeyValuePair<string, object>("hasTool", backpack.tool != null));
         worldData.Add(new KeyValuePair<string, object>("hasToolSupplies", (backpack.numLogs > 0 && backpack.numOres > 0)));
