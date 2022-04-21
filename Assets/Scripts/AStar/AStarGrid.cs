@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class AStarGrid : MonoBehaviour
 {
+    //public Transform player;
     public LayerMask unwalkableMask;
     public Vector2 gridWorldSize;
     public float nodeRadius;
@@ -36,15 +37,35 @@ public class AStarGrid : MonoBehaviour
             }
         }
     }
+
+    public Node nodeFromWorldPoint(Vector3 worldPos)
+    {
+        float percentX = (worldPos.x + gridWorldSize.x / 2) / gridWorldSize.x;
+        float percentY = (worldPos.y + gridWorldSize.y / 2) / gridWorldSize.y;
+        percentX = Mathf.Clamp01(percentX);
+        percentY = Mathf.Clamp01(percentY);
+
+        int x = Mathf.RoundToInt((gridSizeX - 1) * percentX);
+        int y = Mathf.RoundToInt((gridSizeY - 1) * percentY);
+
+        return grid[x, y];
+    }
     
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireCube(transform.position, new Vector3(gridWorldSize.x, gridWorldSize.y, 1));
 
-        if (grid != null) {
+        if (grid != null)
+        {
+            //Node playerNode = nodeFromWorldPoint(player.position);
+            
             foreach (Node n in grid)
             {
                 Gizmos.color = (n.walkable) ? Color.white : Color.red;
+                /*if (playerNode == n)
+                {
+                    Gizmos.color = Color.blue;
+                }*/
                 Gizmos.DrawCube(n.worldPos, Vector3.one * (nodeDiameter - 0.1f));
             }
         }

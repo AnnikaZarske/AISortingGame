@@ -97,6 +97,7 @@ GameObject:
   - component: {fileID: 993320824764709861}
   - component: {fileID: 993320824764709860}
   - component: {fileID: 993320824764709867}
+  - component: {fileID: 5889578739289069473}
   m_Layer: 0
   m_Name: Farmer
   m_TagString: Untagged
@@ -216,3 +217,17 @@ MonoBehaviour:
   target: {fileID: 0}
   workDuration: 2
   toolIconPos: {x: -0.1, y: 0.27, z: 0}
+--- !u!136 &5889578739289069473
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 993320824764709866}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.11887729
+  m_Height: 0.3284098
+  m_Direction: 1
+  m_Center: {x: -0.0055502653, y: 0.010175645, z: 0}
