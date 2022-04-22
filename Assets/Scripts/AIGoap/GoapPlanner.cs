@@ -68,21 +68,16 @@ public class GoapPlanner : MonoBehaviour
 
         // go through each action available at this node and see if we can use it here
         foreach (GoapAction action in usableActions) {
-
-            // if the parent state has the conditions for this action's preconditions, we can use it here
             if ( inState(action.Preconditions, parent.state) ) {
-
-                // apply the action's effects to the parent state
                 HashSet<KeyValuePair<string,object>> currentState = populateState (parent.state, action.Effects);
                 //Debug.Log(GoapAgent.prettyPrint(currentState));
                 Node node = new Node(parent, parent.runningCost+action.cost, currentState, action);
 
                 if (inState(goal, currentState)) {
-                    // we found a solution!
                     leaves.Add(node);
                     foundOne = true;
                 } else {
-                    // not at a solution yet, so test all the remaining actions and branch out the tree
+                    
                     HashSet<GoapAction> subset = actionSubset(usableActions, action);
                     bool found = buildGraph(node, leaves, subset, goal);
                     if (found)

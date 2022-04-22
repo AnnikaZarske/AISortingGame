@@ -1,12 +1,13 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
 
 public abstract class Worker : MonoBehaviour, IGoap
 {
-
     public BackpackComponent backpack;
+    public Pathfinding pathfinding;
     public float moveSpeed = 1f;
     public Vector3 foodIconPos = new Vector3(0.1f, 0.27f, 0);
     public Vector3 toolIconPos = new Vector3(-0.1f, 0.27f, 0);
@@ -15,6 +16,9 @@ public abstract class Worker : MonoBehaviour, IGoap
     {
         if (backpack == null)
             backpack = gameObject.AddComponent(typeof(BackpackComponent)) as BackpackComponent;
+        
+        if (pathfinding == null)
+            pathfinding = gameObject.AddComponent(typeof(Pathfinding)) as Pathfinding;
 
         if (backpack.food == null)
         {
@@ -72,16 +76,136 @@ public abstract class Worker : MonoBehaviour, IGoap
         Debug.Log ("<color=red>Plan Aborted</color> "+GoapAgent.prettyPrint(aborter));
     }
 
+    private Vector3[] path;
+    private bool pathSuccess;
+    private int pathIndex;
+    
     public bool moveAgent(GoapAction nextAction)
     {
         float step = moveSpeed * Time.deltaTime;
-        gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, nextAction.target.transform.position, step);
+        if (path == null)
+        {
+            pathSuccess = pathfinding.FindPath(gameObject.transform.position, nextAction.target.transform.position);
+            if (pathSuccess)
+            {
+                path = pathfinding.waypoints;
+                Debug.Log("pathLEngth: " + path.Length);
+            }
+            else
+            {
+                Debug.LogWarning("<color=red>No path found in moveAgent</color>");
+            }
+            pathIndex = 0;
+            
+        }
+        else
+        {
+            Debug.Log("pathindex: " + pathIndex);
+            Vector3 currentWaypoint = path[pathIndex];
+            transform.position = Vector3.MoveTowards(gameObject.transform.position, currentWaypoint, step);
+            if (Vector3.Distance(transform.position, currentWaypoint) < 0.01f)
+            {
+                pathIndex++;
+                /*if (pathIndex == path.Length)
+                {
+                    
+                }*/
+            }
+        }
         
-        if (gameObject.transform.position.Equals(nextAction.target.transform.position) ) {
+        if (Vector3.Distance(gameObject.transform.position, nextAction.target.transform.position) < 0.3f) {
             // we are at the target location, we are done
             nextAction.setInRange(true);
+            pathIndex = 0;
+            path = null;
             return true;
         } else
             return false;
     }
+    
+    /*public void OnPathFound(Vector3[] newPath, bool pathSucessful) {
+        if (pathSucessful) {
+            path = newPath;
+            targetIndex = 0;
+            StopCoroutine("FollowPath");
+            StartCoroutine("FollowPath");
+        }
+    }
+
+    private IEnumerator FollowPath() {
+        Vector3 currentWaypoint = path[0];
+
+        while (true) {
+            if (transform.position == currentWaypoint) {
+                targetIndex++;
+                if (targetIndex >= path.Length) {
+                    
+                    yield break;
+                }
+                currentWaypoint = path[targetIndex];
+            }
+
+            transform.position = Vector3.MoveTowards(transform.position, currentWaypoint, moveSpeed * Time.deltaTime);
+            yield return null;
+        }
+    }*/
+
+    public void OnDrawGizmos()
+    {
+        if (path != null)
+        {
+            for(int i = pathIndex; i < path.Length; i++)
+            {
+                Gizmos.color = Color.black;
+                Gizmos.DrawCube(path[i], Vector3.one * 0.1f);
+
+                if (i == pathIndex)
+                {
+                    Gizmos.DrawLine(transform.position, path[i]);
+                }
+                else
+                {
+                    Gizmos.DrawLine(path[i-1], path[i]);
+                }
+            }
+        }
+    }
 }
+
+/*
+public class test : MonoBehaviour
+{
+    public Transform target;
+    private float speed = 1;
+    private Vector3[] path;
+    private int targetIndex;
+
+    void Start() {
+        PathRequestManager.RequestPath(transform.position, target.position, OnPathFound);
+    }
+
+    public void OnPathFound(Vector3[] newPath, bool pathSucessful) {
+        if (pathSucessful) {
+            path = newPath;
+            StopCoroutine("FollowPath");
+            StartCoroutine("FollowPath");
+        }
+    }
+
+    private IEnumerator FollowPath() {
+        Vector3 currentWaypoint = path[0];
+
+        while (true) {
+            if (transform.position == currentWaypoint) {
+                targetIndex++;
+                if (targetIndex >= path.Length) {
+                    
+                    yield break;
+                }
+            }
+
+            transform.position = Vector3.MoveTowards(transform.position, currentWaypoint, speed * Time.deltaTime);
+            yield return null;
+        }
+    }
+}*/

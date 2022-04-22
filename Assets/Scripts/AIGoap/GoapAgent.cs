@@ -82,7 +82,6 @@ public class GoapAgent : MonoBehaviour
                 fsm.pushState(performActionState);
 
             } else {
-                // ugh, we couldn't get a plan
                 Debug.Log("<color=orange>Failed Plan:</color>"+prettyPrint(goal));
                 dataProvider.planFailed(goal);
                 fsm.popState (); // move back to IdleAction state
@@ -105,6 +104,7 @@ public class GoapAgent : MonoBehaviour
                 return;
             }
             
+            Debug.Log(dataProvider.moveAgent(action));
             if ( dataProvider.moveAgent(action) ) {
                 fsm.popState();
             }
