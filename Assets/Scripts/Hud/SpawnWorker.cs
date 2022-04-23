@@ -7,7 +7,7 @@ public class SpawnWorker : MonoBehaviour
 {
     public int workerCost;
     public Transform workerParent;
-    public ResourceCount resourceCount;
+    public StorageComponent resourceCount;
 
     public void SpawnWorkerClick(GameObject worker)
     {
@@ -16,7 +16,7 @@ public class SpawnWorker : MonoBehaviour
         //Vector3 adjustZ = new Vector3(worldPoint.x, worldPoint.y, 0);
         
         //Spawn(adjustZ, worker);
-        resourceCount = FindObjectOfType<ResourceCount>().GetComponent<ResourceCount>();
+        resourceCount = FindObjectOfType<StorageComponent>().GetComponent<StorageComponent>();
         Spawn(worker);
     }
 

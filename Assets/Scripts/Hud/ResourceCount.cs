@@ -12,8 +12,7 @@ public class ResourceCount : MonoBehaviour
     public TextMeshProUGUI oreCount;
     public TextMeshProUGUI foodCount;
     public TextMeshProUGUI coinCount;
-    public int numCoins; // Replace with coins
-    
+
     [Header("Crafted material")]
     public TextMeshProUGUI plankCount;
     public TextMeshProUGUI brickCount;
@@ -41,7 +40,7 @@ public class ResourceCount : MonoBehaviour
     
     void Update()
     {
-        coinCount.text = numCoins.ToString("00");
+        coinCount.text = storage.numCoins.ToString("00");
         
         logCount.text = storage.numLogs.ToString("00");
 

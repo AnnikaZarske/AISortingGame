@@ -6,12 +6,12 @@ using UnityEngine;
 
 public class HoverMouse : MonoBehaviour
 {
-    public int workerCost;
+    public string workerCost;
     public TextMeshProUGUI displayText;
 
     private void Start()
     {
-        displayText.text = "Cost: " + workerCost.ToString();
+        displayText.text = "Cost: " + workerCost;
     }
 
     public void Hover()

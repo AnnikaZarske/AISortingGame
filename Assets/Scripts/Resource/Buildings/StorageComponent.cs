@@ -9,4 +9,5 @@ public class StorageComponent : MonoBehaviour
    public int numOres;
    public int numPlanks;
    public int numBricks;
+   public int numCoins;
 }

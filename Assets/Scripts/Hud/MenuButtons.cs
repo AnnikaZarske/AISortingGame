@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class MenuButtons : MonoBehaviour
 {
-    public GameObject workerButtons;
-
-    public void OnClick(GameObject buttons)
+    public void ToDisplay(GameObject buttonsToDisplay)
     {
-        buttons.SetActive(true);
-        this.gameObject.SetActive(false);
+        buttonsToDisplay.SetActive(true);
+    }
+    
+    public void ToHide(GameObject buttonsToHide)
+    {
+        buttonsToHide.SetActive(false);
     }
 }
