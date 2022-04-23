@@ -17,6 +17,9 @@ public class GoalTracker : MonoBehaviour
     public TextMeshProUGUI toolNumText;
     public StorageComponent storage;
     public SmithComponent smith;
+    public bool toolGoalComplete = false;
+    public bool brickGoalComplete = false;
+    public bool plankGoalComplete = false;
 
     // Start is called before the first frame update
     void Start()
@@ -28,19 +31,55 @@ public class GoalTracker : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        plankNumText.text = storage.numPlanks.ToString();
-        brickNumText.text = storage.numBricks.ToString();
-        toolNumText.text = smith.numTools.ToString();
-        
         checkGoal();
     }
 
     private void checkGoal()
     {
-        if (smith.numTools >= toolGoal)
+        if (smith.numTools >= toolGoal) {
+            toolGoalText.gameObject.SetActive(false);
+            toolNumText.text = "COMPLETED";
+            toolGoalComplete = true;
+        }else {
+            toolGoalText.gameObject.SetActive(true);
+            toolNumText.text = smith.numTools.ToString();
+            toolGoalComplete = false;
+        }
+
+        if (storage.numPlanks >= plankGoal) {
+            plankGoalText.gameObject.SetActive(false);
+            plankNumText.text = "COMPLETED";
+            plankGoalComplete = true;
+        }else {
+            plankGoalText.gameObject.SetActive(true);
+            plankNumText.text = storage.numPlanks.ToString();
+            plankGoalComplete = false;
+        }
+        
+        if (storage.numBricks >= brickGoal) {
+            brickGoalText.gameObject.SetActive(false);
+            brickNumText.text = "COMPLETED";
+            brickGoalComplete = true;
+            
+        }else {
+            brickGoalText.gameObject.SetActive(true);
+            brickNumText.text = storage.numBricks.ToString();
+            brickGoalComplete = false;
+        }
+        
+        if (toolGoalComplete && plankGoalComplete && brickGoalComplete) {
+            GoalComplete();
+        }
+    }
+
+    private void GoalComplete()
+    {
+        if (toolGoalComplete && plankGoalComplete && brickGoalComplete)
         {
-            // set done
-            // set not done if it falls under goal again
+            //Debug.Log("GAME COMPLETED!!!");
+            //TODO: display build castle button
+            //plopp built castle into existence
+            //game complete!
         }
     }
 }

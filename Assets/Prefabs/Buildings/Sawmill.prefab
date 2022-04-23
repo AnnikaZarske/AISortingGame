@@ -391,7 +391,7 @@ GameObject:
   - component: {fileID: 520372219443517846}
   - component: {fileID: 6633152009247981979}
   m_Layer: 8
-  m_Name: GameObject
+  m_Name: SawmillComponent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -104,7 +104,7 @@ public class GoapAgent : MonoBehaviour
                 return;
             }
             
-            Debug.Log(dataProvider.moveAgent(action));
+            //Debug.Log(dataProvider.moveAgent(action));
             if ( dataProvider.moveAgent(action) ) {
                 fsm.popState();
             }

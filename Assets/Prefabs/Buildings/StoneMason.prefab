@@ -227,7 +227,7 @@ GameObject:
   - component: {fileID: 7113257992673580604}
   - component: {fileID: 216850502945941657}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: StoneMasopnComponent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
