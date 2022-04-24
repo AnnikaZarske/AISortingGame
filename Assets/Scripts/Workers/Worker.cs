@@ -77,8 +77,6 @@ public abstract class Worker : MonoBehaviour, IGoap
         float step = moveSpeed * Time.deltaTime;
         if (path == null) {
             pathSuccess = pathfinding.FindPath(gameObject.transform.position, nextAction.target.transform.position);
-            Debug.Log("My position: " + gameObject.transform.position);
-            Debug.Log("targtet: " + nextAction.target.transform.position);
             if (pathSuccess) {
                 path = pathfinding.waypoints;
                 targetReached = false;

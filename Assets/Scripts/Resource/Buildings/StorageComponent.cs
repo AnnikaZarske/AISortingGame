@@ -10,4 +10,11 @@ public class StorageComponent : MonoBehaviour
    public int numPlanks;
    public int numBricks;
    public int numCoins;
+
+   [SerializeField] private Transform NumberPopup;
+   
+   public void DisplayText()
+   {
+      Instantiate(NumberPopup);
+   }
 }
