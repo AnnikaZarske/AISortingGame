@@ -68,6 +68,7 @@ public class DropOffBrickAction : GoapAction
         if (Time.time - startTime > workDuration) {
             BackpackComponent backpack = (BackpackComponent)agent.GetComponent(typeof(BackpackComponent));
             targetSupplyPile.numBricks += backpack.numBricks;
+            targetSupplyPile.DisplayText(backpack.numBricks);
             droppedOffBricks = true;
             backpack.numBricks = 0;
         }

@@ -27595,6 +27595,14 @@ PrefabInstance:
       propertyPath: numPlanks
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2522550737352000019, guid: 69ad262e73636f046aa867c3a22a032d, type: 3}
+      propertyPath: numberPopup
+      value: 
+      objectReference: {fileID: 8797530741274740674, guid: efec8ef5d91c24b469acf38eb39268c8, type: 3}
+    - target: {fileID: 2522550737352000019, guid: 69ad262e73636f046aa867c3a22a032d, type: 3}
+      propertyPath: numberPos.y
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 4465375478047398954, guid: 69ad262e73636f046aa867c3a22a032d, type: 3}
       propertyPath: m_Name
       value: Storage

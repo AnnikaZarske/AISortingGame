@@ -69,6 +69,7 @@ public class DropOffOreAction : GoapAction
         if (Time.time - startTime > workDuration) {
             BackpackComponent backpack = (BackpackComponent)agent.GetComponent(typeof(BackpackComponent));
             targetSupplyPile.numOres += backpack.numOres;
+            targetSupplyPile.DisplayText(backpack.numOres);
             droppedOffOres = true;
             backpack.numOres = 0;
         }

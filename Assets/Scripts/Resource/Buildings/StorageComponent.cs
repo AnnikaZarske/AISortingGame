@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,11 +11,16 @@ public class StorageComponent : MonoBehaviour
    public int numPlanks;
    public int numBricks;
    public int numCoins;
+   public GameObject numberPopup;
+   public Vector3 numberPos;
 
-   [SerializeField] private Transform NumberPopup;
-   
-   public void DisplayText()
+   private void Start()
    {
-      Instantiate(NumberPopup);
+      numberPos = new Vector3(-3.5f, 2f, 0);
+   }
+
+   public void DisplayText(int numberAmount)
+   {
+      NumberPopup.Create(numberPos, numberAmount, numberPopup);
    }
 }

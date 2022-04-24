@@ -69,6 +69,7 @@ public class DropOffPlankAction : GoapAction
         if (Time.time - startTime > workDuration) {
             BackpackComponent backpack = (BackpackComponent)agent.GetComponent(typeof(BackpackComponent));
             targetSupplyPile.numPlanks += backpack.numPlanks;
+            targetSupplyPile.DisplayText(backpack.numPlanks);
             droppedOffPlanks = true;
             backpack.numPlanks = 0;
         }

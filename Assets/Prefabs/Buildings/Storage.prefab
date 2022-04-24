@@ -177,3 +177,5 @@ MonoBehaviour:
   numPlanks: 0
   numBricks: 0
   numCoins: 0
+  numberPopup: {fileID: 8797530741274740674, guid: efec8ef5d91c24b469acf38eb39268c8, type: 3}
+  numberPos: {x: 0, y: 0.3, z: 0}

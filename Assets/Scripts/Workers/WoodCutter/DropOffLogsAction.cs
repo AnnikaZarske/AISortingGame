@@ -69,6 +69,7 @@ public class DropOffLogsAction : GoapAction
         if (Time.time - startTime > workDuration) {
             BackpackComponent backpack = (BackpackComponent)agent.GetComponent(typeof(BackpackComponent));
             targetSupplyPile.numLogs += backpack.numLogs;
+            targetSupplyPile.DisplayText(backpack.numLogs);
             droppedOffLogs = true;
             backpack.numLogs = 0;
         }

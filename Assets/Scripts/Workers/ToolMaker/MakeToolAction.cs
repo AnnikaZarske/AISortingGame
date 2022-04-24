@@ -76,6 +76,7 @@ public class MakeToolAction : GoapAction
                 backpack.numLogs -= 1;
                 backpack.numOres -= 1;
                 targetSmith.numTools += 1;
+                targetSmith.DisplayText(1);
                 crafted = true;
                 
                 FoodComponent food = backpack.food.GetComponent(typeof(FoodComponent)) as FoodComponent;
