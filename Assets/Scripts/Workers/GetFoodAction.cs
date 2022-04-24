@@ -79,6 +79,8 @@ public class GetFoodAction : GoapAction
 
 				StorageComponent resourceCount = FindObjectOfType<StorageComponent>().GetComponent<StorageComponent>();
 				resourceCount.numCoins += 1;
+				targetFarm.DisplayText(1);
+				targetFarm.PlaySound(targetFarm.coinSound);
 				
 				BackpackComponent backpack = (BackpackComponent)agent.GetComponent(typeof(BackpackComponent));
 				backpack.AddFood();

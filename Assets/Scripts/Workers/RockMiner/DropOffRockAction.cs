@@ -70,6 +70,7 @@ public class DropOffRockAction : GoapAction
             BackpackComponent backpack = (BackpackComponent)agent.GetComponent(typeof(BackpackComponent));
             targetSupplyPile.numRocks += backpack.numRocks;
             targetSupplyPile.DisplayText(backpack.numRocks);
+            targetSupplyPile.DropOffSound(targetSupplyPile.RockAndOreDropSound);
             droppedOffRocks = true;
             backpack.numRocks = 0;
         }

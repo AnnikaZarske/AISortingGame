@@ -73,6 +73,7 @@ public class DropOffFoodAction : GoapAction
 			BackpackComponent backpack = (BackpackComponent)agent.GetComponent(typeof(BackpackComponent));
 			targetFarm.numFood += backpack.numFoods;
 			targetFarm.DisplayText(backpack.numFoods);
+			targetFarm.PlaySound(targetFarm.foodDropoffSound);
 			droppedOffFood = true;
 			backpack.numFoods = 0;
 		}

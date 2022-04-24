@@ -13,6 +13,9 @@ public class StorageComponent : MonoBehaviour
    public int numCoins;
    public GameObject numberPopup;
    public Vector3 numberPos;
+   public AudioSource audioSource;
+   public AudioClip logDropOffSound;
+   public AudioClip RockAndOreDropSound;
 
    private void Start()
    {
@@ -22,5 +25,10 @@ public class StorageComponent : MonoBehaviour
    public void DisplayText(int numberAmount)
    {
       NumberPopup.Create(numberPos, numberAmount, numberPopup);
+   }
+
+   public void DropOffSound(AudioClip sound)
+   {
+      audioSource.PlayOneShot(sound);
    }
 }

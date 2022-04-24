@@ -11,6 +11,9 @@ public class FarmFoodAction : GoapAction
     public float workDuration = 2;
     public int farmedFood = 1;
 
+    public AudioSource audioSource;
+    public AudioClip foodFarmedSound;
+
     public FarmFoodAction()
     {
         addPrecondition("hasFoods", false);
@@ -75,6 +78,7 @@ public class FarmFoodAction : GoapAction
                 field.Use(farmedFood);
                 BackpackComponent backpack = (BackpackComponent)agent.GetComponent(typeof(BackpackComponent));
                 backpack.numFoods += farmedFood;
+                audioSource.PlayOneShot(foodFarmedSound);
                 farmed = true;
 
                 ToolComponent tool = backpack.tool.GetComponent(typeof(ToolComponent)) as ToolComponent;

@@ -70,6 +70,7 @@ public class DropOffLogsAction : GoapAction
             BackpackComponent backpack = (BackpackComponent)agent.GetComponent(typeof(BackpackComponent));
             targetSupplyPile.numLogs += backpack.numLogs;
             targetSupplyPile.DisplayText(backpack.numLogs);
+            targetSupplyPile.DropOffSound(targetSupplyPile.logDropOffSound);
             droppedOffLogs = true;
             backpack.numLogs = 0;
         }

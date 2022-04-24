@@ -11,6 +11,9 @@ public class ChopTreeAction : GoapAction
     public float workDuration = 2;
     public int choppedLogs = 1;
 
+    public AudioSource audioSource;
+    public AudioClip logChopSound;
+    
     public ChopTreeAction()
     {
         addPrecondition("hasFood", true);
@@ -78,6 +81,7 @@ public class ChopTreeAction : GoapAction
                     tree.Use(choppedLogs);
                     BackpackComponent backpack = (BackpackComponent)agent.GetComponent(typeof(BackpackComponent));
                     backpack.numLogs += choppedLogs;
+                    audioSource.PlayOneShot(logChopSound);
                     chopped = true;
                     
                     FoodComponent food = backpack.food.GetComponent(typeof(FoodComponent)) as FoodComponent;

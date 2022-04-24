@@ -6,6 +6,8 @@ public class FarmComponent : MonoBehaviour
 {
     public int numFood;
     public GameObject numberPopup;
+    public AudioSource audioSource;
+    public AudioClip coinSound, foodDropoffSound;
     public Vector3 numberPos;
 
     private void Start()
@@ -16,5 +18,10 @@ public class FarmComponent : MonoBehaviour
     public void DisplayText(int numberAmount)
     {
         NumberPopup.Create(numberPos, numberAmount, numberPopup);
+    }
+
+    public void PlaySound(AudioClip sound)
+    {
+        audioSource.PlayOneShot(sound);
     }
 }
