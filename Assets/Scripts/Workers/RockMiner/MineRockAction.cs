@@ -10,6 +10,9 @@ public class MineRockAction : GoapAction
     private float startTime = 0;
     public float workDuration = 2;
     public int minedRocks = 3;
+    
+    public AudioSource audioSource;
+    public AudioClip rockMineSound;
 
     public MineRockAction()
     {
@@ -78,6 +81,7 @@ public class MineRockAction : GoapAction
                     rock.Use(minedRocks);
                     BackpackComponent backpack = (BackpackComponent)agent.GetComponent(typeof(BackpackComponent));
                     backpack.numRocks += minedRocks;
+                    audioSource.PlayOneShot(rockMineSound);
                     mined = true;
                     
                     FoodComponent food = backpack.food.GetComponent(typeof(FoodComponent)) as FoodComponent;
