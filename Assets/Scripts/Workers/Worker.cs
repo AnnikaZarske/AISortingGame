@@ -9,9 +9,8 @@ public abstract class Worker : MonoBehaviour, IGoap
     public BackpackComponent backpack;
     public Pathfinding pathfinding;
     public float moveSpeed = 1f;
-    public Vector3 foodIconPos = new Vector3(0.1f, 0.27f, 0);
-    public Vector3 toolIconPos = new Vector3(-0.1f, 0.27f, 0);
-    
+
+
     void Start()
     {
         if (backpack == null)
@@ -22,20 +21,12 @@ public abstract class Worker : MonoBehaviour, IGoap
 
         if (backpack.food == null)
         {
-            GameObject prefab = Resources.Load<GameObject> (backpack.foodType);
-            GameObject food = Instantiate (prefab, transform.position, quaternion.identity);
-            backpack.food = food;
-            food.transform.parent = transform;
-            food.transform.localPosition = foodIconPos;
+           backpack.AddFood();
         }
         
         if (backpack.tool == null)
         {
-            GameObject prefab = Resources.Load<GameObject> (backpack.toolType);
-            GameObject tool = Instantiate (prefab, transform.position, quaternion.identity);
-            backpack.tool = tool;
-            tool.transform.parent = transform;
-            tool.transform.localPosition = toolIconPos;
+            backpack.AddTool();
         }
     }
 
@@ -86,11 +77,13 @@ public abstract class Worker : MonoBehaviour, IGoap
         float step = moveSpeed * Time.deltaTime;
         if (path == null) {
             pathSuccess = pathfinding.FindPath(gameObject.transform.position, nextAction.target.transform.position);
+            Debug.Log("My position: " + gameObject.transform.position);
+            Debug.Log("targtet: " + nextAction.target.transform.position);
             if (pathSuccess) {
                 path = pathfinding.waypoints;
                 targetReached = false;
             }else {
-                Debug.LogWarning("<color=red>No path found in moveAgent</color>");
+                Debug.LogWarning("<color=yellow>No path found in moveAgent</color>");
             }
             pathIndex = 0;
             

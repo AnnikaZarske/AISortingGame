@@ -64,9 +64,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   backpack: {fileID: 6241887971743921481}
+  pathfinding: {fileID: 0}
   moveSpeed: 1
-  foodIconPos: {x: 0.1, y: 0.27, z: 0}
-  toolIconPos: {x: -0.1, y: 0.27, z: 0}
 --- !u!114 &6241887971743921481
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -83,11 +82,15 @@ MonoBehaviour:
   foodType: Food
   tool: {fileID: 0}
   toolType: Tool
+  numFoods: 0
   numLogs: 0
   numRocks: 0
   numOres: 0
   numPlanks: 0
   numBricks: 0
+  sprite: {fileID: 6241887973472325531}
+  foodIconPos: {x: 0.1, y: 0.27, z: 0}
+  toolIconPos: {x: -0.1, y: 0.27, z: 0}
 --- !u!114 &6241887971743921482
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -176,6 +179,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6241887973472325530}
   - component: {fileID: 6241887973472325529}
+  - component: {fileID: 5938295390534708154}
   m_Layer: 0
   m_Name: sprite
   m_TagString: Untagged
@@ -248,3 +252,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &5938295390534708154
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6241887973472325531}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d2573126c02521940b39e76eb7063cc2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GoalTracker : MonoBehaviour
 {
@@ -17,6 +19,11 @@ public class GoalTracker : MonoBehaviour
     public TextMeshProUGUI toolNumText;
     public StorageComponent storage;
     public SmithComponent smith;
+    public GameObject builtCastle;
+    public GameObject unBuiltCastle;
+    public Button buildCastleButton;
+    public GameObject QuitButton;
+    public GameObject winText;
     public bool toolGoalComplete = false;
     public bool brickGoalComplete = false;
     public bool plankGoalComplete = false;
@@ -76,10 +83,21 @@ public class GoalTracker : MonoBehaviour
     {
         if (toolGoalComplete && plankGoalComplete && brickGoalComplete)
         {
-            //Debug.Log("GAME COMPLETED!!!");
-            //TODO: display build castle button
-            //plopp built castle into existence
-            //game complete!
+            buildCastleButton.gameObject.SetActive(true);
         }
+    }
+
+    public void DisplayCastle()
+    {
+        unBuiltCastle.SetActive(false);
+        builtCastle.SetActive(true);
+        buildCastleButton.gameObject.SetActive(false);
+        winText.SetActive(true);
+        QuitButton.SetActive(true);
+    }
+
+    public void BackToStartMenu()
+    {
+        SceneManager.LoadScene("StartScene");
     }
 }

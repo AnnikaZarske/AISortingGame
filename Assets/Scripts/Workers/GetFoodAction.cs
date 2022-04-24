@@ -81,11 +81,7 @@ public class GetFoodAction : GoapAction
 				resourceCount.numCoins += 1;
 				
 				BackpackComponent backpack = (BackpackComponent)agent.GetComponent(typeof(BackpackComponent));
-				GameObject prefab = Resources.Load<GameObject> (backpack.foodType);
-				GameObject food = Instantiate (prefab, transform.position, quaternion.identity);
-				backpack.food = food;
-				food.transform.parent = transform;
-				food.transform.localPosition = foodIconPos;
+				backpack.AddFood();
 
 				return true;
 			} else {

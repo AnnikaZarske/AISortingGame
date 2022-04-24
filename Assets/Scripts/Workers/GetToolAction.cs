@@ -78,11 +78,7 @@ public class GetToolAction : GoapAction
 				hasTool = true;
 
 				BackpackComponent backpack = (BackpackComponent)agent.GetComponent(typeof(BackpackComponent));
-				GameObject prefab = Resources.Load<GameObject> (backpack.toolType);
-				GameObject tool = Instantiate (prefab, transform.position, quaternion.identity);
-				backpack.tool = tool;
-				tool.transform.parent = transform;
-				tool.transform.localPosition = toolIconPos;
+				backpack.AddTool();
 
 				return true;
 			} else {
